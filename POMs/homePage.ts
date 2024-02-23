@@ -3,6 +3,7 @@ import { expect, Locator, Page } from '@playwright/test';
 export class HomePage {
     readonly page: Page;
     readonly loginButton: Locator;
+    readonly registerButton: Locator;
     readonly searchInputField: Locator;
     readonly searchButton: Locator;
     readonly computersSection: Locator;
@@ -17,7 +18,8 @@ export class HomePage {
 
     constructor(page: Page) {
         this.page = page;
-        this.loginButton = page.getByRole('link', { name: 'Log in' })
+        this.loginButton = page.getByRole('link', { name: 'Log in' });
+        this.registerButton = page.getByRole('link', { name: 'Register' });
         this.searchInputField = page.getByPlaceholder('Search store');
         this.searchButton = page.getByRole('button', { name: 'Search' });
         this.computersSection = page.getByRole('link', { name: 'Computers' });
@@ -37,6 +39,10 @@ export class HomePage {
 
     async gotoLogin() {
         await this.loginButton.click();
+    }
+
+    async gotoRegister() {
+        await this.registerButton.click();
     }
 
     async gotoComputersSection() {
